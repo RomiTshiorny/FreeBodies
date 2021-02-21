@@ -18,10 +18,19 @@ class Vector{
 		this.update();
 	}
 
+	scale(scalar) {
+		this.x = this.x*scalar;
+		this.y = this.y*scalar;
+    }
+
 	set(vector) {
 		this.x = vector.x;
 		this.y = vector.y;
 		this.update();
 	}
+
+	clone() {
+		return new Vector(this.x, this.y);
+    }
 
 }
