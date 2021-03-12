@@ -13,7 +13,8 @@ class GameEngine {
         this.surfaceWidth = null;
         this.surfaceHeight = null;
         this.lastMouse = { x: 0, y: 0 };
-        this.G = 0.0667/2;
+        this.G = 0.0667 / 2;
+        
     };
 
     init(ctx) {
@@ -73,12 +74,18 @@ class GameEngine {
 
         this.ctx.canvas.addEventListener("mouseup", function (e) {
             //console.log(getXandY(e));
-            if (e.which == 1) {
+            if (e.which == 1 && !that.newestEntity.moveable) {
                 that.click = getXandY(e);
                 that.newestEntity.moveable = true;
                 var dx = that.click.x - that.newestEntity.x;
                 var dy = that.click.y - that.newestEntity.y;
                 that.newestEntity.velocity = new Vector(dx / 100, dy / 100);
+            }
+        }, false);
+        this.ctx.canvas.addEventListener("mouseout", function (e) {
+            //console.log(getXandY(e));
+            if (!that.newestEntity.moveable) {
+                that.newestEntity.moveable = true;
             }
         }, false);
 
@@ -122,7 +129,9 @@ class GameEngine {
 
     update() {
 
-        
+        //console.log(document.getElementById('gameWorld'));
+        //console.log(document.hasFocus());
+        //console.log(document.activeElement);
         var entitiesCount = this.entities.length;
 
         let totalMass = 0;
@@ -162,7 +171,12 @@ class GameEngine {
             this.queuedEntity = null;
         }
 
-        
+        if (document.activeElement != document.getElementById("gameWorld")) {
+            if (this.newestEntity) {
+                this.newestEntity.moveable = true;
+            }
+            
+        }
 
     };
 
