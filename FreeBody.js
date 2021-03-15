@@ -82,26 +82,26 @@ class FreeBody {
        
 
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctx.arc(this.x - this.game.camera.x, this.y - this.game.camera.y, this.radius, 0, 2 * Math.PI);
         ctx.fill();
 
         ctx.beginPath();
         ctx.strokeStyle = "Red";
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + 20 * this.velocity.x, this.y + 20 * this.velocity.y);
+        ctx.moveTo(this.x - this.game.camera.x, this.y - this.game.camera.y);
+        ctx.lineTo(this.x + 20 * this.velocity.x - this.game.camera.x, this.y + 20 * this.velocity.y - this.game.camera.y);
         ctx.stroke();
 
         ctx.beginPath();
         ctx.strokeStyle = rgb(57,255,20);
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + 5000 * this.acceleration.x, this.y + 5000 * this.acceleration.y);
+        ctx.moveTo(this.x - this.game.camera.x, this.y - this.game.camera.y);
+        ctx.lineTo(this.x + 5000 * this.acceleration.x - this.game.camera.x, this.y + 5000 * this.acceleration.y - this.game.camera.y);
         ctx.stroke();
 
         if (!this.moveable && this.game.mouse != null) {
             ctx.beginPath();
             ctx.strokeStyle = "Blue";
-            ctx.moveTo(this.x, this.y);
-            ctx.lineTo(this.game.mouse.x, this.game.mouse.y);
+            ctx.moveTo(this.x - this.game.camera.x, this.y - this.game.camera.y);
+            ctx.lineTo((this.game.mouse.x - this.game.offset.x)/this.game.zoom, (this.game.mouse.y - this.game.offset.y)/this.game.zoom);
             ctx.stroke();
         }
         

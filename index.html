@@ -15,6 +15,31 @@
 
 </head>
 <body>
-    <canvas id="gameWorld" width="1024" height="768" style="background: #414a4c; border: 1px solid black" tabindex="1"></canvas>
+    <canvas id="gameWorld" width="1024" height="768" style="background: #414a4c; border: 1px solid black" tabindex="0"></canvas>
+    <div>
+        <div>
+            -Middle click to focus on canvas without placing an entity.
+            <b>Note:</b> Scrolling can be a little
+            funky and you might have to re-click on the canvas to get it working again
+        </div>
+        <div>-<b>WASD</b> to move camera around</div>
+        <div>-<b>Z</b> to remove most recent entity</div>
+    </div>
+    <div>
+        <button id="clearButton">Clear (C)</button>
+    </div>
+    <div>
+        <input type="range" id="zoom" min="0.05" max="1" value="1" step="0.05" />
+        <label for="zoom">Zoom (Shift + Scroll)</label>
+    </div>
+    <div>
+        <input type="range" id="radius" min="5" max="1000" value="10" step="1" />
+        <label for="radius">Radius(Alt + Scroll)</label>
+    </div>
+    <div>
+        <input type="range" id="gravity" min="0" max="0.1" value="0.03335" step="0.005" />
+        <label id ="gravityLabel" for="radius">G</label>
+    </div>
+
 </body>
 </html>
